@@ -1,0 +1,58 @@
+body {
+	margin: 0;
+	font-family: Roboto;
+}
+.navbar {
+	background-color: #11294f;
+	backdrop-filter: blur(16px) saturate(180%);
+	border-radius: 0 0 0 100px;
+	.header {
+		margin: 0;
+		padding-bottom: 10px;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		height: 150px;
+		color: white;
+	}
+
+	.courseFound {
+		// background-color: white;
+		width: 20%;
+		padding: 2px;
+		margin-top: -100px;
+		float: right;
+		color: white;
+		font-size: 0.7rem;
+
+		.courseNum {
+			background-color: white;
+			color: #ed6c02;
+			padding: 3px;
+			border-radius: 2px;
+		}
+	}
+}
+
+.filterBar {
+	background-color: white;
+	// border-radius: 50px;
+	// background: #ffffff;
+	// border-radius: 50px;
+	// background: #443e3e;
+	// box-shadow: inset 10px 10px 20px #ebebeb, inset -10px -10px 20px #ffffff;
+	box-shadow: 1px 4px 8px #919191;
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	position: fixed;
+	top: 140px;
+	left: 0;
+	right: 0;
+	// align-items: center;
+	// align-content: center;
+	// justify-content: center;
+	margin: auto;
+	padding: 20px;
+	border-radius: 0 25px;
+}
