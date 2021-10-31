@@ -6,7 +6,20 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<CourseCard />
+			<div className="courseCard">
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+				<CourseCard />
+			</div>
 		</div>
 	);
 }

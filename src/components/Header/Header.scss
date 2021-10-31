@@ -3,9 +3,8 @@ body {
 	font-family: Roboto;
 }
 .navbar {
-	background-color: #11294f;
-	backdrop-filter: blur(16px) saturate(180%);
-	border-radius: 0 0 0 100px;
+	position: fixed;
+	width: 100%;
 	.header {
 		margin: 0;
 		padding-bottom: 10px;
@@ -14,6 +13,11 @@ body {
 		display: flex;
 		height: 150px;
 		color: white;
+		background-color: rgba(17, 41, 79, 0.75);
+		// background-color: rgba(255, 255, 255, 0.75);
+		border-radius: 0 0 0 100px;
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
 	}
 
 	.courseFound {
@@ -46,9 +50,10 @@ body {
 	justify-content: space-between;
 	width: 60%;
 	position: fixed;
-	top: 140px;
+	top: 130px;
 	left: 0;
 	right: 0;
+	z-index: 99999;
 	// align-items: center;
 	// align-content: center;
 	// justify-content: center;
