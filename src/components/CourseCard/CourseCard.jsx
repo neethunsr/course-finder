@@ -1,24 +1,46 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import "./CourseCard.css";
+import { CalendarToday } from "@mui/icons-material";
 
-export default function CourseCard() {
+function CourseCard(props) {
+	// const { name, imgsrc, rs, dis } = props;
 	return (
-		<Card variant="outlined" sx={{ maxWidth: 345 }}>
-			<CardActionArea href="https://www.google.com/" target="_blank">
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
-						Lizard
-					</Typography>
-					<Typography variant="body2" color="text.secondary">
-						Lizards are a widespread group of squamate reptiles, with over 6,000
-						species, ranging across all continents except Antarctica
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-		</Card>
+		<div className="card">
+			<div className="cardTitle">
+				<h4>301</h4>
+				<p>
+					<CalendarToday color="action" />
+					Oct 11
+				</p>
+			</div>
+			<div className="courseDetails">
+				<div>
+					<h4 className="subHeading">Provider</h4>
+					<h3 className="provider">Udacity</h3>
+				</div>
+				<div>
+					<h4 className="subHeading">Course Name</h4>
+					<h3 className="courseName">
+						Introduction to Artificial Intelligence
+					</h3>
+				</div>
+				<div>
+					<h4 className="subHeading">Universities/Institutions</h4>
+					<h3 className="courseIssuer">Stanford University</h3>
+				</div>
+				<div className="cardFooter">
+					<div>
+						<h4 className="subHeading">Parent Subject</h4>
+						<h3 className="courseSubject">Computer Science</h3>
+					</div>
+					<div>
+						<h4 className="subHeading">Child Subject</h4>
+						<h3 className="courseSubject">AI</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }
+
+export default CourseCard;
