@@ -1,22 +1,42 @@
 import React from "react";
 import "./Header.css";
-import { Button, InputAdornment, TextField } from "@mui/material";
+// import { withStyles } from "@mui/styles";
+import {
+	Button,
+	InputAdornment,
+	TextField,
+	Checkbox,
+	FormControlLabel,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { Book, Subject } from "@mui/icons-material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import { Book, CalendarToday, Subject } from "@mui/icons-material";
+// import AdapterDateFns from "@mui/lab/AdapterDateFns";
+// import LocalizationProvider from "@mui/lab/LocalizationProvider";
+// import DatePicker from "@mui/lab/DatePicker";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 function Header() {
-	const [value, setValue] = React.useState(new Date("2014-08-18T21:11:54"));
+	const [value, setValue] = React.useState(new Date());
 
 	const handleChange = (newValue) => {
 		setValue(newValue);
 	};
+	const label = { inputProps: { "aria-label": "Checkbox demo" } };
+	// const TextField2 = withStyles({
+	// 	root: {
+	// 		"& .MuiInput-underline:after": {
+	// 			borderBottomColor: "#ffffff",
+	// 		},
+	// 		"& .MuiSelect-icon": {
+	// 			color: "#000",
+	// 		},
+	// 		"& .MuiInput-icon": {
+	// 			color: "#000",
+	// 		},
+	// 	},
+	// })(TextField);
 	return (
 		<div>
 			<div className="navbar">
@@ -55,16 +75,47 @@ function Header() {
 						}}
 						variant="standard"
 					/>
-					<LocalizationProvider dateAdapter={AdapterDateFns}>
+					<TextField
+						type="date"
+						// id="input-with-childsubj-icon-textfield"
+						label="Child Subject"
+						color="warning"
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start">
+									<CalendarToday color="warning" />
+								</InputAdornment>
+							),
+						}}
+						variant="standard"
+					/>
+					{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
 						<DatePicker
 							label="Basic example"
+							color="warning"
+							variant="standard"
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position="end">
+										<Book color="warning" />
+									</InputAdornment>
+								),
+							}}
 							value={value}
 							onChange={(newValue) => {
 								setValue(newValue);
 							}}
-							renderInput={(params) => <TextField {...params} />}
+							renderInput={(params) => (
+								<TextField color="warning" variant="standard" {...params} />
+							)}
 						/>
-					</LocalizationProvider>
+					</LocalizationProvider> */}
+					<FormControlLabel
+						value="start"
+						control={<Checkbox color="warning" />}
+						label="Self Paced"
+						labelPlacement="end"
+					/>
 					<Button variant="outlined" color="warning">
 						Reset
 					</Button>

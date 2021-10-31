@@ -44,7 +44,7 @@ body {
 	box-shadow: 1px 4px 8px #919191;
 	display: flex;
 	justify-content: space-between;
-	width: 80%;
+	width: 60%;
 	position: fixed;
 	top: 140px;
 	left: 0;
@@ -55,4 +55,16 @@ body {
 	margin: auto;
 	padding: 20px;
 	border-radius: 0 25px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	border-radius: 4px;
+	margin-right: 2px;
+	opacity: 0.6;
+	filter: invert(0.8);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+	opacity: 1;
 }
