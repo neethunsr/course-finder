@@ -23,7 +23,7 @@ function Header(props) {
 	// const handleChange = (newValue) => {
 	// setValue(newValue);
 	// };
-	const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 	// const TextField2 = withStyles({
 	// 	root: {
 	// 		"& .MuiInput-underline:after": {
