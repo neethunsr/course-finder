@@ -44,13 +44,16 @@ body {
 }
 
 .filterBar {
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.75);
 	// border-radius: 50px;
 	// background: #ffffff;
 	// border-radius: 50px;
 	// background: #443e3e;
 	// box-shadow: inset 10px 10px 20px #ebebeb, inset -10px -10px 20px #ffffff;
-	box-shadow: 1px 4px 4px #919191;
+	// box-shadow: 1px 4px 4px #919191;
+	border: 2px solid rgba(209, 213, 219, 0.3);
+	backdrop-filter: blur(6px) saturate(180%);
+	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	display: flex;
 	justify-content: space-between;
 	width: 60%;

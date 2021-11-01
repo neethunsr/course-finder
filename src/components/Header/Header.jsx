@@ -10,9 +10,6 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Book, CalendarToday, Subject } from "@mui/icons-material";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
-// import DatePicker from "@mui/lab/DatePicker";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -89,27 +86,6 @@ function Header() {
 						}}
 						variant="standard"
 					/>
-					{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-						<DatePicker
-							label="Basic example"
-							color="warning"
-							variant="standard"
-							InputProps={{
-								endAdornment: (
-									<InputAdornment position="end">
-										<Book color="warning" />
-									</InputAdornment>
-								),
-							}}
-							value={value}
-							onChange={(newValue) => {
-								setValue(newValue);
-							}}
-							renderInput={(params) => (
-								<TextField color="warning" variant="standard" {...params} />
-							)}
-						/>
-					</LocalizationProvider> */}
 					<FormControlLabel
 						value="start"
 						control={<Checkbox color="warning" />}
