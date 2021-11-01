@@ -16,13 +16,13 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 function Header(props) {
-	const [value, setValue] = React.useState(new Date());
-	console.log(props);
-	const { data } = props;
-	const length = data.length;
-	const handleChange = (newValue) => {
-		setValue(newValue);
-	};
+	// const [value, setValue] = React.useState(new Date());
+	// console.log(props);
+	const { setSearchInput, getSearchInput, search } = props;
+	// const length = data.length;
+	// const handleChange = (newValue) => {
+	// setValue(newValue);
+	// };
 	const label = { inputProps: { "aria-label": "Checkbox demo" } };
 	// const TextField2 = withStyles({
 	// 	root: {
@@ -48,6 +48,9 @@ function Header(props) {
 						id="input-with-icon-textfield"
 						label="Course"
 						color="warning"
+						name="course"
+						onChange={(e) => getSearchInput(e)}
+						value={setSearchInput.course}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -61,6 +64,9 @@ function Header(props) {
 						id="input-with-childsubj-icon-textfield"
 						label="Child Subject"
 						color="warning"
+						name="child"
+						onChange={(e) => getSearchInput(e)}
+						value={setSearchInput.child}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -73,8 +79,12 @@ function Header(props) {
 					<TextField
 						type="date"
 						// id="input-with-childsubj-icon-textfield"
-						label="Child Subject"
+						label="Session Start"
 						color="warning"
+						name="date"
+						id="date"
+						onChange={(e) => getSearchInput(e)}
+						// value={setSearchInput.date}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -89,13 +99,17 @@ function Header(props) {
 						control={<Checkbox color="warning" />}
 						label="Self Paced"
 						labelPlacement="end"
+						name="isSelfPaced"
+						onChange={(e) => getSearchInput(e)}
+						// value={setSearchInput.course}
 					/>
-					<Button variant="outlined" color="warning">
+					<Button variant="outlined" type="reset" color="warning">
 						Reset
 					</Button>
 					<Button
 						variant="contained"
 						color="warning"
+						onClick={(e) => search(e)}
 						startIcon={<SearchIcon />}
 					>
 						Search
@@ -104,7 +118,7 @@ function Header(props) {
 			</div>
 			<div className="courseFound">
 				<h3>
-					Courses found: <span className="courseNum">{length}</span>
+					Courses found: <span className="courseNum">500</span>
 				</h3>
 			</div>
 		</div>

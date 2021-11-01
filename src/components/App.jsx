@@ -1,11 +1,12 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import axios from "axios";
-// import data from "./data";
+// // import data from "./data";
 import CourseCard from "./CourseCard/CourseCard";
-import Header from "./Header/Header";
+// import Header from "./Header/Header";
 import Background from "./Background";
 import Pagination from "./Pagination/Pagination";
+import Search from "./Search";
 
 const baseURL = "https://nut-case.s3.amazonaws.com/coursessc.json";
 
@@ -33,7 +34,7 @@ function App() {
 
 	return (
 		<div className="App">
-			{list ? <Header data={list} /> : null}
+			{/* <Search /> */}
 			<div className="courseCard">
 				{currentData
 					? currentData.map((item, index) => (
@@ -51,7 +52,8 @@ function App() {
 					  ))
 					: null}
 			</div>
-			<Background></Background>
+			<Search data={list} />
+			<Background />
 			<Pagination
 				className="pagination"
 				currentPage={currentPage}
