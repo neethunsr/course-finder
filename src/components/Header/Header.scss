@@ -1,9 +1,11 @@
 body {
 	margin: 0;
 	font-family: Roboto;
+	// background-color: #ccd9ec;
 }
 .navbar {
 	position: fixed;
+	z-index: 99;
 	width: 100%;
 	.header {
 		margin: 0;
@@ -11,13 +13,15 @@ body {
 		justify-content: center;
 		align-items: center;
 		display: flex;
-		height: 150px;
+		height: 120px;
 		color: white;
+		// z-index: 99;
 		background-color: rgba(17, 41, 79, 0.75);
 		// background-color: rgba(255, 255, 255, 0.75);
 		border-radius: 0 0 0 100px;
-		backdrop-filter: blur(16px) saturate(180%);
-		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		z-index: 0;
+		backdrop-filter: blur(6px) saturate(100%);
+		-webkit-backdrop-filter: blur(6px) saturate(180%);
 	}
 
 	.courseFound {
@@ -28,6 +32,7 @@ body {
 		float: right;
 		color: white;
 		font-size: 0.7rem;
+		z-index: 9999;
 
 		.courseNum {
 			background-color: white;
@@ -45,15 +50,15 @@ body {
 	// border-radius: 50px;
 	// background: #443e3e;
 	// box-shadow: inset 10px 10px 20px #ebebeb, inset -10px -10px 20px #ffffff;
-	box-shadow: 1px 4px 8px #919191;
+	box-shadow: 1px 4px 4px #919191;
 	display: flex;
 	justify-content: space-between;
 	width: 60%;
 	position: fixed;
-	top: 130px;
+	z-index: 99;
+	top: 110px;
 	left: 0;
 	right: 0;
-	z-index: 99999;
 	// align-items: center;
 	// align-content: center;
 	// justify-content: center;

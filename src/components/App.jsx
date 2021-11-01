@@ -8,7 +8,7 @@ import Pagination from "./Pagination/Pagination";
 
 const baseURL = "https://nut-case.s3.amazonaws.com/coursessc.json";
 
-const PageSize = 6;
+const PageSize = 8;
 function App() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [currentData, setCurrentData] = useState(null);
@@ -57,6 +57,7 @@ function App() {
 					: null}
 			</div>
 			<Pagination
+				className="pagination"
 				currentPage={currentPage}
 				totalCount={list.length}
 				pageSize={PageSize}
