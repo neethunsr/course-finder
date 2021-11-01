@@ -4,6 +4,7 @@ import axios from "axios";
 // import data from "./data";
 import CourseCard from "./CourseCard/CourseCard";
 import Header from "./Header/Header";
+import Background from "./Background";
 import Pagination from "./Pagination/Pagination";
 
 const baseURL = "https://nut-case.s3.amazonaws.com/coursessc.json";
@@ -27,18 +28,12 @@ function App() {
 		const newData = list.slice(firstPageIndex, lastPageIndex);
 		setCurrentData(newData);
 	};
-	// const newlist = list;
-	// const currentData = useMemo(() => {
-	// 	const firstPageIndex = (currentPage - 1) * PageSize;
-	// 	const lastPageIndex = firstPageIndex + PageSize;
-	// 	return list.slice(firstPageIndex, lastPageIndex);
-	// }, [currentPage]);
 
 	if (!list) return null;
 
 	return (
 		<div className="App">
-			<Header />
+			{list ? <Header data={list} /> : null}
 			<div className="courseCard">
 				{currentData
 					? currentData.map((item, index) => (
@@ -56,6 +51,7 @@ function App() {
 					  ))
 					: null}
 			</div>
+			<Background></Background>
 			<Pagination
 				className="pagination"
 				currentPage={currentPage}

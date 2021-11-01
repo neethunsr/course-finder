@@ -14,9 +14,12 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-function Header() {
-	const [value, setValue] = React.useState(new Date());
 
+function Header(props) {
+	const [value, setValue] = React.useState(new Date());
+	console.log(props);
+	const { data } = props;
+	const length = data.length;
 	const handleChange = (newValue) => {
 		setValue(newValue);
 	};
@@ -39,11 +42,6 @@ function Header() {
 			<div className="navbar">
 				<div className="header">
 					<h1>Course Finder</h1>
-				</div>
-				<div className="courseFound">
-					<h3>
-						Courses found: <span className="courseNum">500</span>
-					</h3>
 				</div>
 				<div className="filterBar">
 					<TextField
@@ -103,6 +101,11 @@ function Header() {
 						Search
 					</Button>
 				</div>
+			</div>
+			<div className="courseFound">
+				<h3>
+					Courses found: <span className="courseNum">{length}</span>
+				</h3>
 			</div>
 		</div>
 	);
