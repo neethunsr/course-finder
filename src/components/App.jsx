@@ -18,24 +18,24 @@ function App() {
 
 	useEffect(() => {
 		axios.get(baseURL).then((response) => {
-			setList(response.data);
-			setCurrentData(response.data.slice(0, PageSize));
+			setList(response.data.slice(0, 500));
+			// setCurrentData(response.data.slice(0, PageSize));
 		});
 	}, []);
-	const handleChange = (value) => {
-		setCurrentPage(value);
-		const firstPageIndex = (currentPage - 1) * PageSize;
-		const lastPageIndex = firstPageIndex + PageSize;
-		const newData = list.slice(firstPageIndex, lastPageIndex);
-		setCurrentData(newData);
-	};
+	// const handleChange = (value) => {
+	// 	setCurrentPage(value);
+	// 	const firstPageIndex = (currentPage - 1) * PageSize;
+	// 	const lastPageIndex = firstPageIndex + PageSize;
+	// 	const newData = list.slice(firstPageIndex, lastPageIndex);
+	// 	setCurrentData(newData);
+	// };
 
 	if (!list) return null;
 
 	return (
 		<div className="App">
 			{/* <Search /> */}
-			<div className="courseCard">
+			{/* <div className="courseCard">
 				{currentData
 					? currentData.map((item, index) => (
 							<CourseCard
@@ -52,15 +52,15 @@ function App() {
 					  ))
 					: null}
 			</div>
-			<Search data={list} />
-			<Background />
 			<Pagination
 				className="pagination"
 				currentPage={currentPage}
 				totalCount={list.length}
 				pageSize={PageSize}
 				onPageChange={handleChange} //{(page) => setCurrentPage(page)}
-			/>
+			/> */}
+			<Search data={list} />
+			<Background />
 		</div>
 	);
 }

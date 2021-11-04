@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination/Pagination";
 import CourseCard from "./CourseCard/CourseCard";
+import "./Header/Header.css";
 
 export default function FilterCourse({ course, submitInput }) {
 	// const { course, submitInput } = props;
 	let filterCourses = course;
-	//handling filter conditions
+	// console.log(filterCourses);
+
+	// console.log("====================================");
+	// console.log(submitInput);
 	if (
 		submitInput.date ||
-		submitInput.course ||
-		submitInput.childsubject ||
+		submitInput.name ||
+		submitInput.child ||
 		submitInput.isSelfPaced
 	) {
 		if (submitInput.date) {
@@ -22,24 +26,24 @@ export default function FilterCourse({ course, submitInput }) {
 				);
 			});
 		}
-		if (submitInput.course) {
-			filterCourses = filterCourses.filter((course) => {
+		if (submitInput.name) {
+			filterCourses = filterCourses.filter((name) => {
 				return (
-					course["Course Name"]
+					name["Course Name"]
 						.toString()
 						.toLowerCase()
-						.indexOf(submitInput.course.toLowerCase()) !== -1
+						.indexOf(submitInput.name.toLowerCase()) !== -1
 				);
 			});
 		}
 
-		if (submitInput.childsubject) {
-			filterCourses = filterCourses.filter((childsubject) => {
+		if (submitInput.child) {
+			filterCourses = filterCourses.filter((child) => {
 				return (
-					childsubject["Child Subject"]
+					child["Child Subject"]
 						.toString()
 						.toLowerCase()
-						.indexOf(submitInput.childsubject.toLowerCase()) !== -1
+						.indexOf(submitInput.child.toLowerCase()) !== -1
 				);
 			});
 		}
@@ -55,43 +59,70 @@ export default function FilterCourse({ course, submitInput }) {
 			});
 		}
 	}
+
 	const PageSize = 8;
 	const [currentPage, setCurrentPage] = useState(1);
 	const [currentData, setCurrentData] = useState(null);
-	setCurrentData(filterCourses.slice(0, PageSize));
+
+	useEffect(() => {
+		setCurrentData(filterCourses.slice(0, PageSize));
+	}, []);
+	// setCurrentData(filterCourses.slice(0, PageSize));
 	const handleChange = (value) => {
 		setCurrentPage(value);
 		const firstPageIndex = (currentPage - 1) * PageSize;
 		const lastPageIndex = firstPageIndex + PageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
+		console.log(newData);
 		setCurrentData(newData);
+	};
+	let displayCourses = () => {
+		return (
+			<div>
+				<div className="courseCard">
+					{currentData.map((item, index) => (
+						<CourseCard
+							key={index}
+							id={item["Course Id"]}
+							date={item["Next Session Date"]}
+							name={item["Course Name"]}
+							provider={item["Provider"]}
+							issuer={item["Universities/Institutions"]}
+							parent={item["Parent Subject"]}
+							child={item["Child Subject"]}
+							url={item.Url}
+						/>
+					))}
+				</div>
+				<Pagination
+					className="pagination"
+					currentPage={currentPage}
+					totalCount={filterCourses.length}
+					pageSize={PageSize}
+					onPageChange={handleChange} //{(page) => setCurrentPage(page)}
+				/>
+			</div>
+		);
 	};
 	return (
 		<div>
-			<div className="courseCard">
-				{currentData
-					? currentData.map((item, index) => (
-							<CourseCard
-								key={index}
-								id={item["Course Id"]}
-								date={item["Next Session Date"]}
-								name={item["Course Name"]}
-								provider={item["Provider"]}
-								issuer={item["Universities/Institutions"]}
-								parent={item["Parent Subject"]}
-								child={item["Child Subject"]}
-								url={item.Url}
-							/>
-					  ))
-					: null}
+			<div>{displayCourses()}</div>
+			<div className="courseFound">
+				<h3>
+					Courses found:{" "}
+					<span className="courseNum">{filterCourses.length}</span>
+				</h3>
 			</div>
-			<Pagination
-				className="pagination"
-				currentPage={currentPage}
-				totalCount={filterCourses.length}
-				pageSize={PageSize}
-				onPageChange={handleChange} //{(page) => setCurrentPage(page)}
-			/>
+			{(submitInput.date ||
+				submitInput.name ||
+				submitInput.child ||
+				submitInput.isSelfPaced) &&
+				filterCourses.length === 0 && (
+					<div id="loader">
+						<h1>No courses found!</h1>
+					</div>
+				)}
+			{/* {console.log(submitInput)} */}
 		</div>
 	);
 }

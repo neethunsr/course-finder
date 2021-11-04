@@ -48,9 +48,9 @@ function Header(props) {
 						id="input-with-icon-textfield"
 						label="Course"
 						color="warning"
-						name="course"
+						name="name"
 						onChange={(e) => getSearchInput(e)}
-						value={setSearchInput.course}
+						value={setSearchInput.name}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -100,7 +100,17 @@ function Header(props) {
 						label="Self Paced"
 						labelPlacement="end"
 						name="isSelfPaced"
-						onChange={(e) => getSearchInput(e)}
+						onChange={(e) => {
+							getSearchInput(e);
+							let date = document.getElementById("date");
+							if (!setSearchInput.isSelfPaced) {
+								date.disabled = true;
+								date.value = "";
+							} else {
+								date.disabled = false;
+							}
+						}}
+						checked={setSearchInput.isSelfPaced}
 						// value={setSearchInput.course}
 					/>
 					<Button variant="outlined" type="reset" color="warning">
@@ -109,18 +119,23 @@ function Header(props) {
 					<Button
 						variant="contained"
 						color="warning"
-						onClick={(e) => search(e)}
+						onClick={(e) => {
+							search(e);
+							let date = document.getElementById("date");
+							date.value = "";
+							date.disabled = false;
+						}}
 						startIcon={<SearchIcon />}
 					>
 						Search
 					</Button>
 				</div>
 			</div>
-			<div className="courseFound">
+			{/* <div className="courseFound">
 				<h3>
 					Courses found: <span className="courseNum">500</span>
 				</h3>
-			</div>
+			</div> */}
 		</div>
 	);
 }

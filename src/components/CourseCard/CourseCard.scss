@@ -11,7 +11,7 @@
 	// box-shadow: rgba(51, 35, 35, 0.4) 0px 10px 20px;
 	// transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 	width: 400px;
-	min-height: 350px;
+	height: 350px;
 	// max-height: fit-content;
 	// position: relative;
 	// z-index: 1;
@@ -41,7 +41,7 @@
 		padding: 10px;
 	}
 	&:hover {
-		transform: scale(1.01);
+		transform: scale(1.03);
 		// font-size: 1.1rem;
 		cursor: pointer;
 		transition: transform 0.1s ease-in, box-shadow 0.1s ease-in;
