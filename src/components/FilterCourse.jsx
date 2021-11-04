@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Pagination from "./Pagination/Pagination";
 import CourseCard from "./CourseCard/CourseCard";
 import "./Header/Header.css";
@@ -7,15 +7,18 @@ export default function FilterCourse({ course, submitInput }) {
 	// const { course, submitInput } = props;
 	let filterCourses = course;
 	// console.log(filterCourses);
-
+	const pageSize = 8;
+	const [currentPage, setCurrentPage] = useState(1);
 	// console.log("====================================");
-	// console.log(submitInput);
-	if (
+
+	const change =
 		submitInput.date ||
 		submitInput.name ||
 		submitInput.child ||
-		submitInput.isSelfPaced
-	) {
+		submitInput.isSelfPaced;
+
+	if (change) {
+		// const currentData = filterCourses.slice(0, pageSize);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
 				console.log(typeof course["Next Session Date"]);
@@ -47,7 +50,6 @@ export default function FilterCourse({ course, submitInput }) {
 				);
 			});
 		}
-
 		if (submitInput.isSelfPaced) {
 			filterCourses = filterCourses.filter((isSelfPaced) => {
 				return (
@@ -60,13 +62,12 @@ export default function FilterCourse({ course, submitInput }) {
 		}
 	}
 
-	const PageSize = 8;
-	const [currentPage, setCurrentPage] = useState(1);
-	const [currentData, setCurrentData] = useState(null);
+	// const [currentPage, setCurrentPage] = useState(1);
+	// const [currentData, setCurrentData] = useState(null);
 
-	useEffect(() => {
+	/*useEffect(() => {
 		setCurrentData(filterCourses.slice(0, PageSize));
-	}, []);
+	}, [currentPage]);
 	// setCurrentData(filterCourses.slice(0, PageSize));
 	const handleChange = (value) => {
 		setCurrentPage(value);
@@ -75,8 +76,17 @@ export default function FilterCourse({ course, submitInput }) {
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
 		console.log(newData);
 		setCurrentData(newData);
-	};
-	let displayCourses = () => {
+	};*/
+
+	const currentData = useMemo(() => {
+		// change ? (firstPageIndex = 0) : null;
+		const firstPageIndex = (currentPage - 1) * pageSize;
+		const lastPageIndex = firstPageIndex + pageSize;
+		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
+		console.log(newData);
+		return newData;
+	}, [currentPage, filterCourses]);
+	function displayCourses() {
 		return (
 			<div>
 				<div className="courseCard">
@@ -98,12 +108,12 @@ export default function FilterCourse({ course, submitInput }) {
 					className="pagination"
 					currentPage={currentPage}
 					totalCount={filterCourses.length}
-					pageSize={PageSize}
-					onPageChange={handleChange} //{(page) => setCurrentPage(page)}
+					pageSize={pageSize}
+					onPageChange=/*{handleChange}*/ {(page) => setCurrentPage(page)}
 				/>
 			</div>
 		);
-	};
+	}
 	return (
 		<div>
 			<div>{displayCourses()}</div>

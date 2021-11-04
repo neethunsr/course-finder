@@ -113,7 +113,17 @@ function Header(props) {
 						checked={setSearchInput.isSelfPaced}
 						// value={setSearchInput.course}
 					/>
-					<Button variant="outlined" type="reset" color="warning">
+					<Button
+						variant="outlined"
+						color="warning"
+						// value={setSearchInput.reset}
+						name="reset"
+						onClick={(e) => {
+							search(e);
+							// value = 1;
+							// console.log(value);
+						}}
+					>
 						Reset
 					</Button>
 					<Button

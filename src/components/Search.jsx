@@ -72,9 +72,10 @@ function Search() {
 	}, []);
 
 	let search = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		let dateInput = "";
 		if (searchInput.date) {
+			e.preventDefault();
 			let date = JSON.stringify(searchInput.date);
 			let formattedDate = date.replace(/^"(.+)"$/, "$1");
 			console.log(formattedDate);
@@ -99,6 +100,7 @@ function Search() {
 				year;
 		}
 		if (searchInput.isSelfPaced) {
+			e.preventDefault();
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
@@ -106,6 +108,7 @@ function Search() {
 				isSelfPaced: searchInput.isSelfPaced,
 			});
 		} else {
+			e.preventDefault();
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
