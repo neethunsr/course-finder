@@ -9,7 +9,6 @@ export default function FilterCourse({ course, submitInput }) {
 	// console.log(filterCourses);
 	const pageSize = 8;
 	const [currentPage, setCurrentPage] = useState(1);
-	// console.log("====================================");
 
 	const change =
 		submitInput.date ||
@@ -18,7 +17,6 @@ export default function FilterCourse({ course, submitInput }) {
 		submitInput.isSelfPaced;
 
 	if (change) {
-		// const currentData = filterCourses.slice(0, pageSize);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
 				console.log(typeof course["Next Session Date"]);
@@ -62,7 +60,6 @@ export default function FilterCourse({ course, submitInput }) {
 		}
 	}
 
-	// const [currentPage, setCurrentPage] = useState(1);
 	// const [currentData, setCurrentData] = useState(null);
 
 	/*useEffect(() => {
@@ -79,13 +76,13 @@ export default function FilterCourse({ course, submitInput }) {
 	};*/
 
 	const currentData = useMemo(() => {
-		// change ? (firstPageIndex = 0) : null;
 		const firstPageIndex = (currentPage - 1) * pageSize;
 		const lastPageIndex = firstPageIndex + pageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
 		console.log(newData);
 		return newData;
 	}, [currentPage, filterCourses]);
+
 	function displayCourses() {
 		return (
 			<div>
@@ -123,16 +120,11 @@ export default function FilterCourse({ course, submitInput }) {
 					<span className="courseNum">{filterCourses.length}</span>
 				</h3>
 			</div>
-			{(submitInput.date ||
-				submitInput.name ||
-				submitInput.child ||
-				submitInput.isSelfPaced) &&
-				filterCourses.length === 0 && (
-					<div id="loader">
-						<h1>No courses found!</h1>
-					</div>
-				)}
-			{/* {console.log(submitInput)} */}
+			{change && filterCourses.length === 0 && (
+				<div id="loader">
+					<h1>No courses found!</h1>
+				</div>
+			)}
 		</div>
 	);
 }
