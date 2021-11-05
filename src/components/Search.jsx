@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header/Header";
 import FilterCourse from "./FilterCourse";
-import { CircularProgress } from "@mui/material";
+// import { CircularProgress } from "@mui/material";
 
 function Search() {
 	const [courseList, setCourseList] = useState([]);
