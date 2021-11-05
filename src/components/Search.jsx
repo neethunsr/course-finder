@@ -5,9 +5,7 @@ import FilterCourse from "./FilterCourse";
 
 function Search() {
 	const [courseList, setCourseList] = useState([]);
-	// setCourse(props.data);
-	// console.log(course);
-	// const course = props.data;
+
 	const [searchInput, setSearchInput] = useState({
 		name: "",
 		child: "",
@@ -45,7 +43,7 @@ function Search() {
 			});
 		}
 	};
-	let extenstion = "";
+	let suffix = "";
 
 	const monthNames = [
 		"Jan",
@@ -75,7 +73,6 @@ function Search() {
 		// e.preventDefault();
 		let dateInput = "";
 		if (searchInput.date) {
-			e.preventDefault();
 			let date = JSON.stringify(searchInput.date);
 			let formattedDate = date.replace(/^"(.+)"$/, "$1");
 			console.log(formattedDate);
@@ -83,16 +80,16 @@ function Search() {
 			let month = formattedDate.slice(5, 7);
 			let day = formattedDate.slice(8, 10);
 			if (day === "01" || day === "21" || day === "31") {
-				extenstion = "st";
+				suffix = "st";
 			} else if (day === "2" || day === "22") {
-				extenstion = "nd";
+				suffix = "nd";
 			} else if (day === "3" || day === "23") {
-				extenstion = "rd";
+				suffix = "rd";
 			} else {
-				extenstion = "th";
+				suffix = "th";
 			}
 			dateInput =
-				day.concat(extenstion) +
+				day.concat(suffix) +
 				" " +
 				monthNames[parseInt(month - 1)] +
 				"," +
@@ -100,7 +97,6 @@ function Search() {
 				year;
 		}
 		if (searchInput.isSelfPaced) {
-			e.preventDefault();
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
@@ -108,7 +104,6 @@ function Search() {
 				isSelfPaced: searchInput.isSelfPaced,
 			});
 		} else {
-			e.preventDefault();
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
