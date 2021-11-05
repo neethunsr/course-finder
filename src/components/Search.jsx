@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header/Header";
 import FilterCourse from "./FilterCourse";
+import { CircularProgress } from "@mui/material";
 
 function Search() {
 	const [courseList, setCourseList] = useState([]);
-
+	const [loading, setLoading] = useState(false);
 	const [searchInput, setSearchInput] = useState({
 		name: "",
 		child: "",
@@ -62,12 +63,15 @@ function Search() {
 	];
 
 	useEffect(() => {
-		axios
-			.get("https://nut-case.s3.amazonaws.com/coursessc.json")
-			.then((res) => {
-				setCourseList(res.data.slice(0, 500));
-			})
-			.catch((error) => console.log(error));
+		const fetchData = async () => {
+			setLoading(true);
+			const res = await axios
+				.get("https://nut-case.s3.amazonaws.com/coursessc.json")
+				.catch((error) => console.log(error));
+			setCourseList(res.data.slice(0, 500));
+			setLoading(false);
+		};
+		fetchData();
 	}, []);
 
 	let search = (e) => {
@@ -123,8 +127,12 @@ function Search() {
 	};
 	return (
 		<div>
-			<FilterCourse course={courseList} submitInput={submitInput} />
-
+			{loading ? (
+				<CircularProgress color="warning" />
+			) : (
+				// console.log("Loading..")
+				<FilterCourse course={courseList} submitInput={submitInput} />
+			)}
 			<Header
 				setSearchInput={searchInput}
 				getSearchInput={getSearchInput}
