@@ -18,6 +18,7 @@ function Search() {
 		child: "",
 		date: "",
 		isSelfPaced: false,
+		// pageStart: false,
 	});
 
 	let getSearchInput = (e) => {
@@ -102,6 +103,7 @@ function Search() {
 				child: searchInput.child,
 				date: "",
 				isSelfPaced: searchInput.isSelfPaced,
+				// pageStart: true,
 			});
 		} else {
 			setSubmitInput({
@@ -109,6 +111,7 @@ function Search() {
 				child: searchInput.child,
 				date: dateInput,
 				isSelfPaced: searchInput.isSelfPaced,
+				// pageStart: true,
 			});
 		}
 		setSearchInput({

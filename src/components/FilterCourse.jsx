@@ -7,7 +7,11 @@ export default function FilterCourse({ course, submitInput }) {
 	// const { course, submitInput } = props;
 	let filterCourses = course;
 	// console.log(filterCourses);
+
+	// console.log(submitInput);
+	// console.log(submitInput.pageStart);
 	const pageSize = 8;
+	// const [isPageStart, setIsPageStart] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const change =
@@ -16,7 +20,26 @@ export default function FilterCourse({ course, submitInput }) {
 		submitInput.child ||
 		submitInput.isSelfPaced;
 
+	// Reset page to start
+	// if (submitInput.pageStart) {
+	// 	setIsPageStart(true);
+	// 	setCurrentPage(1);
+	// }
+	// const handleReset = (page) => {
+	// 	if (submitInput.pageStart) {
+	// 		setIsPageStart(true);
+	// 		// setCurrentPage(1);
+	// 	}
+	// 	if (isPageStart) {
+	// 		setCurrentPage(1);
+	// 		setIsPageStart(false);
+	// 	} else {
+	// 		setCurrentPage(page);
+	// 	}
+	// };
 	if (change) {
+		window.scrollTo(0, 0);
+		// setCurrentPage(1);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
 				console.log(typeof course["Next Session Date"]);
@@ -74,12 +97,17 @@ export default function FilterCourse({ course, submitInput }) {
 		console.log(newData);
 		setCurrentData(newData);
 	};*/
+	// if (isPageStart) {
+	// 	const newData = filterCourses.slice(0, pageSize);
+	// 	setIsPageStart(true);
+	// 	return newData;
+	// }
 
 	const currentData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * pageSize;
 		const lastPageIndex = firstPageIndex + pageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
-		console.log(newData);
+		// console.log(newData);
 		return newData;
 	}, [currentPage, filterCourses]);
 
@@ -106,7 +134,7 @@ export default function FilterCourse({ course, submitInput }) {
 					currentPage={currentPage}
 					totalCount={filterCourses.length}
 					pageSize={pageSize}
-					onPageChange=/*{handleChange}*/ {(page) => setCurrentPage(page)}
+					onPageChange={(page) => setCurrentPage(page)}
 				/>
 			</div>
 		);
@@ -121,7 +149,7 @@ export default function FilterCourse({ course, submitInput }) {
 				</h3>
 			</div>
 			{change && filterCourses.length === 0 && (
-				<div id="loader">
+				<div>
 					<h1>No courses found!</h1>
 				</div>
 			)}
