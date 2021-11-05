@@ -128,7 +128,8 @@ function Search() {
 	return (
 		<div>
 			{loading ? (
-				<CircularProgress color="warning" />
+				// <CircularProgress color="warning" />
+				<div className="">Loading...</div>
 			) : (
 				// console.log("Loading..")
 				<FilterCourse course={courseList} submitInput={submitInput} />
