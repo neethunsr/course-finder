@@ -3,6 +3,7 @@
   display: -ms-flexbox;
   display: flex;
   list-style-type: none;
+  padding: 0%;
 }
 
 .pagination-container .pagination-item {

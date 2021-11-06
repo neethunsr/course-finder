@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header/Header";
 import FilterCourse from "./FilterCourse";
+import "../App.css";
 // import { CircularProgress } from "@mui/material";
 
 function Search() {
@@ -129,7 +130,7 @@ function Search() {
 		<div>
 			{loading ? (
 				// <CircularProgress color="warning" />
-				<div className="">Loading...</div>
+				<div className="loader">Loading...</div>
 			) : (
 				// console.log("Loading..")
 				<FilterCourse course={courseList} submitInput={submitInput} />

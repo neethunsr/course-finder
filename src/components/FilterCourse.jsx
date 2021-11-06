@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import Pagination from "./Pagination/Pagination";
 import CourseCard from "./CourseCard/CourseCard";
 import "./Header/Header.css";
+import "../App.css";
 
 export default function FilterCourse({ course, submitInput }) {
 	// const { course, submitInput } = props;
@@ -38,7 +39,7 @@ export default function FilterCourse({ course, submitInput }) {
 	// 	}
 	// };
 	if (change) {
-		window.scrollTo(0, 0);
+		
 		// setCurrentPage(1);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
@@ -104,6 +105,7 @@ export default function FilterCourse({ course, submitInput }) {
 	// }
 
 	const currentData = useMemo(() => {
+		window.scrollTo(0, 0);
 		const firstPageIndex = (currentPage - 1) * pageSize;
 		const lastPageIndex = firstPageIndex + pageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);

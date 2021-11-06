@@ -10,6 +10,7 @@
 	/* margin-top: 150px; */
 	/* position: absolute; */
 	padding: 250px 50px 10px;
+	outline: black;
 }
 
 .pagination {
@@ -20,6 +21,12 @@
 	margin-bottom: 50px;
 }
 
+.loader {
+	outline: black 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 @media screen and (min-width: 320px) and (max-width: 1023px) {
 	.courseCard {
 		padding: 500px 50px 10px;
