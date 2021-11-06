@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	font-family: Roboto;
 	background-color: #f0f0f0;
+	height: 100%;
 }
 .navbar {
 	top: 0;
@@ -16,9 +17,7 @@ body {
 		display: flex;
 		height: 120px;
 		color: white;
-		// z-index: 99;
 		background-color: rgba(17, 41, 79, 0.75);
-		// background-color: rgba(255, 255, 255, 0.75);
 		border-radius: 0 0 0 100px;
 		z-index: 0;
 		backdrop-filter: blur(6px) saturate(100%);
@@ -27,14 +26,11 @@ body {
 }
 .courseFound {
 	top: 0;
-	// background-color: white;
 	width: 20%;
 	padding: 2px;
-	// top: 150px;
 	position: fixed;
 	margin-top: 50px;
 	margin-left: 80%;
-	// float: right;
 	color: white;
 	font-size: 0.7rem;
 	z-index: 99;
@@ -49,12 +45,6 @@ body {
 
 .filterBar {
 	background-color: rgba(255, 255, 255, 0.75);
-	// border-radius: 50px;
-	// background: #ffffff;
-	// border-radius: 50px;
-	// background: #443e3e;
-	// box-shadow: inset 10px 10px 20px #ebebeb, inset -10px -10px 20px #ffffff;
-	// box-shadow: 1px 4px 4px #919191;
 	border: 2px solid rgba(209, 213, 219, 0.3);
 	backdrop-filter: blur(6px) saturate(180%);
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -66,9 +56,6 @@ body {
 	top: 110px;
 	left: 0;
 	right: 0;
-	// align-items: center;
-	// align-content: center;
-	// justify-content: center;
 	margin: auto;
 	padding: 20px;
 	border-radius: 0 25px;
