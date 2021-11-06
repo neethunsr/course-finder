@@ -7,8 +7,6 @@
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	/* margin-top: 150px; */
-	/* position: absolute; */
 	padding: 250px 50px 10px;
 	outline: black;
 }
@@ -22,14 +20,14 @@
 }
 
 .loader {
-	outline: black 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	justify-items: center;
+	margin-top: 30%;
 }
+
 @media screen and (min-width: 320px) and (max-width: 1023px) {
 	.courseCard {
-		padding: 500px 50px 10px;
+		padding: 500px 30px 10px;
+	}
+	.loader {
+		margin-top: 60vh;
 	}
 }

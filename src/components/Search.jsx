@@ -3,7 +3,7 @@ import axios from "axios";
 import Header from "./Header/Header";
 import FilterCourse from "./FilterCourse";
 import "../App.css";
-// import { CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 function Search() {
 	const [courseList, setCourseList] = useState([]);
@@ -129,10 +129,10 @@ function Search() {
 	return (
 		<div>
 			{loading ? (
-				// <CircularProgress color="warning" />
-				<div className="loader">Loading...</div>
+				<div className="loader" role="status">
+					<CircularProgress color="warning" />
+				</div>
 			) : (
-				// console.log("Loading..")
 				<FilterCourse course={courseList} submitInput={submitInput} />
 			)}
 			<Header
