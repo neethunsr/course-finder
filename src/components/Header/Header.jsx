@@ -16,27 +16,8 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 function Header(props) {
-	// const [value, setValue] = React.useState(new Date());
-	// console.log(props);
-	const { setSearchInput, getSearchInput, search } = props;
-	// const length = data.length;
-	// const handleChange = (newValue) => {
-	// setValue(newValue);
-	// };
+	const { setSearchInput, getSearchInput, search, refresh } = props;
 
-	// const TextField2 = withStyles({
-	// 	root: {
-	// 		"& .MuiInput-underline:after": {
-	// 			borderBottomColor: "#ffffff",
-	// 		},
-	// 		"& .MuiSelect-icon": {
-	// 			color: "#000",
-	// 		},
-	// 		"& .MuiInput-icon": {
-	// 			color: "#000",
-	// 		},
-	// 	},
-	// })(TextField);
 	return (
 		<div>
 			<div className="navbar">
@@ -78,13 +59,11 @@ function Header(props) {
 					/>
 					<TextField
 						type="date"
-						// id="input-with-childsubj-icon-textfield"
 						label="Session Start"
 						color="warning"
 						name="date"
 						id="date"
 						onChange={(e) => getSearchInput(e)}
-						// value={setSearchInput.date}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -111,17 +90,13 @@ function Header(props) {
 							}
 						}}
 						checked={setSearchInput.isSelfPaced}
-						// value={setSearchInput.course}
 					/>
 					<Button
 						variant="outlined"
 						color="warning"
-						// value={setSearchInput.reset}
 						name="reset"
-						onClick={(e) => {
-							search(e);
-							// value = 1;
-							// console.log(value);
+						onClick={() => {
+							refresh();
 						}}
 					>
 						Reset
@@ -141,11 +116,6 @@ function Header(props) {
 					</Button>
 				</div>
 			</div>
-			{/* <div className="courseFound">
-				<h3>
-					Courses found: <span className="courseNum">500</span>
-				</h3>
-			</div> */}
 		</div>
 	);
 }

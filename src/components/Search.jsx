@@ -8,19 +8,31 @@ import { CircularProgress } from "@mui/material";
 function Search() {
 	const [courseList, setCourseList] = useState([]);
 	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			const res = await axios
+				.get("https://nut-case.s3.amazonaws.com/coursessc.json")
+				.catch((error) => console.log(error));
+			setCourseList(res.data.slice(0, 500));
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
 	const [searchInput, setSearchInput] = useState({
 		name: "",
 		child: "",
 		date: "",
 		isSelfPaced: false,
 	});
-
 	const [submitInput, setSubmitInput] = useState({
 		name: "",
 		child: "",
 		date: "",
 		isSelfPaced: false,
-		// pageStart: false,
+		pageStart: false,
 	});
 
 	let getSearchInput = (e) => {
@@ -46,8 +58,8 @@ function Search() {
 			});
 		}
 	};
-	let suffix = "";
 
+	let suffix = "";
 	const monthNames = [
 		"Jan",
 		"Feb",
@@ -63,18 +75,21 @@ function Search() {
 		"Dec",
 	];
 
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			const res = await axios
-				.get("https://nut-case.s3.amazonaws.com/coursessc.json")
-				.catch((error) => console.log(error));
-			setCourseList(res.data.slice(0, 500));
-			setLoading(false);
-		};
-		fetchData();
-	}, []);
-
+	let refresh = () => {
+		setSubmitInput({
+			name: "",
+			child: "",
+			date: "",
+			isSelfPaced: false,
+			pageStart: true,
+		});
+		setSearchInput({
+			name: "",
+			child: "",
+			date: "",
+			isSelfPaced: false,
+		});
+	};
 	let search = (e) => {
 		// e.preventDefault();
 		let dateInput = "";
@@ -110,7 +125,8 @@ function Search() {
 				isSelfPaced: searchInput.isSelfPaced,
 				// pageStart: true,
 			});
-		} else {
+		}
+		if (dateInput) {
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
@@ -124,8 +140,10 @@ function Search() {
 			child: "",
 			date: "",
 			isSelfPaced: false,
+			pageStart: false,
 		});
 	};
+
 	return (
 		<div>
 			{loading ? (
@@ -139,6 +157,7 @@ function Search() {
 				setSearchInput={searchInput}
 				getSearchInput={getSearchInput}
 				search={search}
+				refresh={refresh}
 			/>
 		</div>
 	);
