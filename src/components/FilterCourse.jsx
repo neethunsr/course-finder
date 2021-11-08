@@ -39,7 +39,6 @@ export default function FilterCourse({ course, submitInput }) {
 	// 	}
 	// };
 	if (change) {
-		
 		// setCurrentPage(1);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
@@ -141,6 +140,10 @@ export default function FilterCourse({ course, submitInput }) {
 			</div>
 		);
 	}
+
+	// function displayGraph() {
+	// return <div></div>;
+	// }
 	return (
 		<div>
 			<div>{displayCourses()}</div>

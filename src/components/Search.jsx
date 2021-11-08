@@ -125,8 +125,7 @@ function Search() {
 				isSelfPaced: searchInput.isSelfPaced,
 				// pageStart: true,
 			});
-		}
-		if (dateInput) {
+		} else {
 			setSubmitInput({
 				name: searchInput.name,
 				child: searchInput.child,
