@@ -7,14 +7,8 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import BarChart from "./BarChart";
 
 export default function FilterCourse({ course, submitInput }) {
-	// const { course, submitInput } = props;
 	let filterCourses = course;
-	// console.log(filterCourses);
-
-	// console.log(submitInput);
-	// console.log(submitInput.pageStart);
 	const pageSize = 8;
-	// const [isPageStart, setIsPageStart] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const change =
@@ -23,25 +17,8 @@ export default function FilterCourse({ course, submitInput }) {
 		submitInput.child ||
 		submitInput.isSelfPaced;
 
-	// Reset page to start
-	// if (submitInput.pageStart) {
-	// 	setIsPageStart(true);
-	// 	setCurrentPage(1);
-	// }
-	// const handleReset = (page) => {
-	// 	if (submitInput.pageStart) {
-	// 		setIsPageStart(true);
-	// 		// setCurrentPage(1);
-	// 	}
-	// 	if (isPageStart) {
-	// 		setCurrentPage(1);
-	// 		setIsPageStart(false);
-	// 	} else {
-	// 		setCurrentPage(page);
-	// 	}
-	// };
 	if (change) {
-		// setCurrentPage(1);
+		window.scrollTo(0, 0);
 		if (submitInput.date) {
 			filterCourses = filterCourses.filter((course) => {
 				console.log(typeof course["Next Session Date"]);
@@ -85,28 +62,7 @@ export default function FilterCourse({ course, submitInput }) {
 		}
 	}
 
-	// const [currentData, setCurrentData] = useState(null);
-
-	/*useEffect(() => {
-		setCurrentData(filterCourses.slice(0, PageSize));
-	}, [currentPage]);
-	// setCurrentData(filterCourses.slice(0, PageSize));
-	const handleChange = (value) => {
-		setCurrentPage(value);
-		const firstPageIndex = (currentPage - 1) * PageSize;
-		const lastPageIndex = firstPageIndex + PageSize;
-		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
-		console.log(newData);
-		setCurrentData(newData);
-	};*/
-	// if (isPageStart) {
-	// 	const newData = filterCourses.slice(0, pageSize);
-	// 	setIsPageStart(true);
-	// 	return newData;
-	// }
-
 	const currentData = useMemo(() => {
-		window.scrollTo(0, 0);
 		const firstPageIndex = (currentPage - 1) * pageSize;
 		const lastPageIndex = firstPageIndex + pageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
@@ -114,6 +70,7 @@ export default function FilterCourse({ course, submitInput }) {
 		return newData;
 	}, [currentPage, filterCourses]);
 
+	// To display course cards
 	function displayCourses() {
 		return (
 			<div>
@@ -142,6 +99,8 @@ export default function FilterCourse({ course, submitInput }) {
 			</div>
 		);
 	}
+
+	// To display bar graph
 	const [graphChoice, setGraphChoice] = useState(1);
 	const handleChange = (event) => {
 		setGraphChoice(event.target.value);
@@ -164,9 +123,6 @@ export default function FilterCourse({ course, submitInput }) {
 						</Select>
 					</FormControl>
 				</div>
-				{/* {currentData.map((item, index) => (
-					<BarChart data={item["Provider"]} label="Provider" />
-				))} */}
 				<div>
 					{graphChoice === 1 ? (
 						<BarChart data={currentData} label="Parent Subject" value={1} />
