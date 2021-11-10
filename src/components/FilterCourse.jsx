@@ -3,6 +3,8 @@ import Pagination from "./Pagination/Pagination";
 import CourseCard from "./CourseCard/CourseCard";
 import "./Header/Header.css";
 import "../App.css";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import BarChart from "./BarChart";
 
 export default function FilterCourse({ course, submitInput }) {
 	// const { course, submitInput } = props;
@@ -108,7 +110,7 @@ export default function FilterCourse({ course, submitInput }) {
 		const firstPageIndex = (currentPage - 1) * pageSize;
 		const lastPageIndex = firstPageIndex + pageSize;
 		const newData = filterCourses.slice(firstPageIndex, lastPageIndex);
-		// console.log(newData);
+		console.log(newData);
 		return newData;
 	}, [currentPage, filterCourses]);
 
@@ -140,13 +142,45 @@ export default function FilterCourse({ course, submitInput }) {
 			</div>
 		);
 	}
-
-	// function displayGraph() {
-	// return <div></div>;
-	// }
+	const [graphChoice, setGraphChoice] = useState(1);
+	const handleChange = (event) => {
+		setGraphChoice(event.target.value);
+	};
+	console.log(graphChoice);
+	function displayGraph() {
+		return (
+			<div>
+				<div className="dropDown">
+					<FormControl fullWidth>
+						<InputLabel color="warning">Choose</InputLabel>
+						<Select
+							color="warning"
+							value={graphChoice}
+							label="Choose"
+							onChange={handleChange}
+						>
+							<MenuItem value={1}>Parent Subject</MenuItem>
+							<MenuItem value={2}>University</MenuItem>
+						</Select>
+					</FormControl>
+				</div>
+				{/* {currentData.map((item, index) => (
+					<BarChart data={item["Provider"]} label="Provider" />
+				))} */}
+				<div>
+					{graphChoice === 1 ? (
+						<BarChart data={currentData} label="Parent Subject" value={1} />
+					) : (
+						<BarChart data={currentData} label="Universities" value={2} />
+					)}
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div>
 			<div>{displayCourses()}</div>
+			<div>{displayGraph()}</div>
 			<div className="courseFound">
 				<h3>
 					Courses found:{" "}
