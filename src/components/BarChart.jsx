@@ -18,7 +18,6 @@ function BarChart({ data, label, value }) {
 				})
 			);
 		}
-		// chart();
 	}, [data, value]);
 	const distinctData = [...new Set(xLabel)];
 	var distinctLength = distinctData.length;
@@ -29,11 +28,6 @@ function BarChart({ data, label, value }) {
 	for (var i = 0; i < distinctLength; i++) {
 		countData.push(count.get(distinctData[i]));
 	}
-
-	// console.log(xLabel);
-	console.log(distinctData);
-	// console.log(count);
-	console.log(countData);
 
 	const chartData = {
 		labels: distinctData,
@@ -63,11 +57,7 @@ function BarChart({ data, label, value }) {
 					responsive: true,
 					plugins: {
 						legend: {
-							position: "top",
 							display: true,
-							labels: {
-								color: "rgb(37,18,2)",
-							},
 						},
 						title: {
 							display: true,
@@ -78,7 +68,6 @@ function BarChart({ data, label, value }) {
 								{
 									ticks: {
 										beginAtZero: true,
-										// stepSize: 1,
 									},
 								},
 							],
