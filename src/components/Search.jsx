@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header/Header";
 import FilterCourse from "./FilterCourse";
 import "../App.css";
 import { CircularProgress } from "@mui/material";
+import { fetchCourses } from "../redux/allCourses/allCoursesActions";
 
 function Search() {
-	const [courseList, setCourseList] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			const res = await axios
-				.get("https://nut-case.s3.amazonaws.com/coursessc.json")
-				.catch((error) => console.log(error));
-			setCourseList(res.data.slice(0, 500));
-			setLoading(false);
-		};
-		fetchData();
-	}, []);
+		dispatch(fetchCourses());
+	}, [dispatch]);
 
+	const loading = useSelector((state) => state.allCourses.loading);
+	const courses = useSelector((state) => state.allCourses.courses);
+	console.log(courses);
 	const [searchInput, setSearchInput] = useState({
 		name: "",
 		child: "",
@@ -123,7 +118,6 @@ function Search() {
 				child: searchInput.child,
 				date: "",
 				isSelfPaced: searchInput.isSelfPaced,
-				// pageStart: true,
 			});
 		} else {
 			setSubmitInput({
@@ -131,7 +125,6 @@ function Search() {
 				child: searchInput.child,
 				date: dateInput,
 				isSelfPaced: searchInput.isSelfPaced,
-				// pageStart: true,
 			});
 		}
 		setSearchInput({
@@ -144,13 +137,13 @@ function Search() {
 	};
 
 	return (
-		<div>
+		<>
 			{loading ? (
 				<div className="loader" role="status">
 					<CircularProgress color="warning" />
 				</div>
 			) : (
-				<FilterCourse course={courseList} submitInput={submitInput} />
+				<FilterCourse course={courses} submitInput={submitInput} />
 			)}
 			<Header
 				setSearchInput={searchInput}
@@ -158,7 +151,7 @@ function Search() {
 				search={search}
 				refresh={refresh}
 			/>
-		</div>
+		</>
 	);
 }
 
